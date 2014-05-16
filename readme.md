@@ -1,6 +1,6 @@
 #Vuvuzela.js
 
-Turn any element in a vuvuzela player. Just click to turn it on/off.
+Turn any element into a vuvuzela player. Just click to turn it on/off.
 
 Demo: http://noogn.github.io/Vuvuzela.js
 
