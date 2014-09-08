@@ -2,12 +2,14 @@
   'use strict';
 
   function VuvuzelaPlayer(audioContext) {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
     this.audioCtx = audioContext;
     this.isPlaying = false;
 
     var oscillator = this.audioCtx.createOscillator();
     var filter = this.audioCtx.createBiquadFilter();
-    var gainNode = this.audioCtx.createGainNode();
+    var gainNode = this.audioCtx.gainNode();
     var now = this.audioCtx.currentTime;
 
     oscillator.type = 'sawtooth';
