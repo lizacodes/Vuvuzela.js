@@ -1,0 +1,79 @@
+:root {
+  font-size: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #23809f;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}
+
+header {
+  text-align: center;
+  padding: 1rem;
+  background-color: #c4e8f4;
+}
+
+header p {
+  font-size: 1.5rem;
+}
+
+footer {
+  text-align: right;
+  border-top: 1px solid #e1e1e1;
+  padding-top: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #a1dbee;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: #64c6e6;
+}
+
+button[disabled] {
+  color: #ccc;
+  background-color: #eee;
+  cursor: default;
+}
+
+.download {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+  :root {
+    font-size: 20px;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
