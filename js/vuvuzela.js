@@ -1,17 +1,25 @@
 (function(window) {
   'use strict';
+  
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
   function VuvuzelaPlayer(audioContext) {
     this.audioCtx = audioContext;
+
+    // Flag indicating if the sound is playing
     this.isPlaying = false;
+
+    // Audio nodes
+    this.gainNode = this.audioCtx.createGain();
 
     var oscillator = this.audioCtx.createOscillator();
     var filter = this.audioCtx.createBiquadFilter();
     var gainNode = this.audioCtx.createGain();
     var now = this.audioCtx.currentTime;
 
+    // Configure the oscillator so that it sounds like a vuvuzela
     oscillator.type = 'sawtooth';
     oscillator.frequency.value = 230;
     oscillator.start(0);
@@ -20,51 +28,38 @@
     filter.frequency.value = 440;
     filter.Q.value = 6;
 
+    // Connect the audio nodes to the context destination
     oscillator.connect(filter);
     filter.connect(gainNode);
     gainNode.connect(this.audioCtx.destination);
-    gainNode.gain.setValueAtTime(0, now);
 
-    this.gainNode = gainNode;
+    // Mute the volume to begin with
+    gainNode.gain.setValueAtTime(0, now);
   }
 
-  VuvuzelaPlayer.prototype.play = function() {
+  Vuvuzela.prototype.play = function() {
     var now = this.audioCtx.currentTime;
     this.gainNode.gain.cancelScheduledValues(now);
     this.gainNode.gain.linearRampToValueAtTime(1, now + 0.5);
+    this.isPlaying = true;
   };
 
-  VuvuzelaPlayer.prototype.stop = function() {
+  Vuvuzela.prototype.stop = function() {
     var now = this.audioCtx.currentTime;
     this.gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
+    this.isPlaying = false;
   };
 
-  VuvuzelaPlayer.prototype.playToggle = function() {
+  // Convience method utilising play and stop
+  Vuvuzela.prototype.toggle = function() {
     var now = this.audioCtx.currentTime;
 
     if(this.isPlaying) {
-      this.isPlaying = false;
-      this.gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
+      this.stop();
     } else {
-      this.isPlaying = true;
-      this.gainNode.gain.cancelScheduledValues(now);
-      this.gainNode.gain.linearRampToValueAtTime(1, now + 0.5);
+      this.play();
     }
   };
 
-  function vuvuzela(elements, audioContext) {
-    for(var i = 0; i < elements.length; i++) {
-      attachVuvuzela(elements[i], audioContext);
-    }
-  }
-
-  function attachVuvuzela(element, audioContext) {
-    var player = new VuvuzelaPlayer(audioContext);
-
-    element.addEventListener('click', function() {
-      player.playToggle();
-    });
-  }
-
-  window.vuvuzela = vuvuzela;
+  window.Vuvuzela = Vuvuzela;
 })(window);

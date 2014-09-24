@@ -2,15 +2,63 @@
 <html>
 <head>
 	<title>Vuvuzela.js</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/prism.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/main.css" type="text/css" media="all">
 </head>
 <body>
-<h1>I'm a vuvuzela</h1>
-<a href="#">So am I!</a>
-<script src="Vuvuzela.js"></script>
+<header>
+  <div class="container">
+    <h1>Vuvuzela.js</h1>
+    <p>Probably the most annoying plugin ever.</p>
+  </div>
+</header>
+<section role="main">
+  <div class="container">
+    <h2>Demo</h2>
+    <p><button id="btn1">Play</button></p>
+    <p><small>Okay, okay. <a href="demo.html">Here's a less annoying demo</a>.</small></p>
+    <h2>Usage</h2>
+    <h3>Create a vuvuzela</h3>
+<pre class="language-javascript"><code>// Create a new Audio Context - only one instance per page
+var audioContext = new AudioContext();
+    
+// Create a vuvuzela, passing the Audio Context through
+var vuvuzela = new Vuvuzela(audioContext);</code>
+</pre>
+    <p>You can create multiple vuvuzelas within the same audio context :)</p>
+
+    <h3>Play the vuvuzela</h3>
+<pre class="language-javascript"><code>vuvuzela.play();</code></pre>
+
+    <h3>Make it stop!!</h3>
+<pre class="language-javascript"><code>vuvuzela.stop();</code></pre>
+
+    <h3>Toggle it off and on</h3>
+    <p>Conveniently works best for click events but feel free to get creative.</p>
+<pre class="language-javascript"><code>vuvuzela.toggle();</code></pre>
+    <!-- Link to Github raw be added -->
+    <p><a href="#" class="download">Download</a></p>
+    <footer>
+      A thing by Liza Nguyen<br>
+      <a href="https://twitter.com/lnoogn">Twitter</a>
+      <a href="https://github.com/noogn">Github</a>
+    </footer>
+  </div>
+</section>
+<script src="js/prism.js"></script>
+<script src="js/vuvuzela.js"></script>
 <script type="text/javascript">
     var audioContext = new AudioContext();
-    var elements = document.querySelectorAll('body *');
-    vuvuzela(elements, audioContext);
+    var vuvuzela = new Vuvuzela(audioContext);
+    var button1 = document.getElementById("btn1");
+
+    button1.addEventListener('click', function() {
+      vuvuzela.play();
+      this.setAttribute("disabled", true);
+    });
 </script>
 </body>
 </html>

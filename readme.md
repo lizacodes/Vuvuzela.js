@@ -1,10 +1,30 @@
 #Vuvuzela.js
 
-Turn any element into a vuvuzela player. Just click to turn it on/off.
+A plugin that uses Web Audio to create a vuvuzela.
 
 Demo: http://noogn.github.io/Vuvuzela.js
 
-##Usage:
+##Usage
+
+###Create a vuvuzela
 
 	var audioContext = new AudioContext();
-	vuvuzela(document.querySelectorAll('body *'), audioContext);
+    
+	// Create a vuvuzela, passing the Audio Context through
+	var vuvuzela = new Vuvuzela(audioContext);
+
+You can create multiple vuvuzelas within the same audio context :)
+
+###Play the vuvuzela
+
+	vuvuzela.play();
+
+###Make it stop!!
+
+	vuvuzela.stop();
+
+###Toggle it off and on
+
+Conveniently works best for click events but feel free to get creative.
+
+	vuvuzela.toggle();

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<title>Vuvuzela.js</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css" type="text/css" media="all">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Vuvuzela.js</h1>
+    <p>Probably the most annoying plugin ever.</p>
+  </div>
+</header>
+<section role="main">
+  <div class="container">
+    <h2>Demo</h2>
+    <p><button id="btn1">Play</button> <button id="btn2">Stop</button> <button id="btn3">Toggle</button></p>
+</section>
+<script src="js/vuvuzela.js"></script>
+<script type="text/javascript">
+    var audioContext = new AudioContext();
+
+    var vuvuzela = new Vuvuzela(audioContext);
+
+    var button1 = document.getElementById("btn1");
+    var button2 = document.getElementById("btn2");
+    var button3 = document.getElementById("btn3");
+
+    button1.addEventListener('click', function() {
+      vuvuzela.play();
+    });
+
+    button2.addEventListener('click', function() {
+      vuvuzela.stop();
+    });
+
+    button3.addEventListener('click', function() {
+      vuvuzela.toggle();
+    });
+</script>
+</body>
+</html>
